@@ -43,20 +43,6 @@ RUN apt-get install -y curl grep sed dpkg && \
 RUN conda install -c anaconda pillow && \
     conda install -c anaconda beautifulsoup4
 
-# Get data
-WORKDIR data/
-
-RUN \
-        git clone https://github.com/loretoparisi/darknet && \
-        wget http://vision.stanford.edu/aditya86/ImageNetDogs/images.tar && \
-        wget http://vision.stanford.edu/aditya86/ImageNetDogs/annotation.tar && \
-        tar -xvf images.tar && \
-        tar -xvf annotation.tar
-
-# Process data
-WORKDIR gen/
-RUN  git clone https://github.com/ldavila07/gpu-test && \
-    python gen-images.py  /data/Images/ /data/Annotation/
 
  # Build Darknet    
 WORKDIR darknet/
