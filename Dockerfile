@@ -40,7 +40,8 @@ RUN apt-get install -y curl grep sed dpkg && \
     rm tini.deb && \
     apt-get clean
 
-RUN conda install -c anaconda pillow beautifulsoup4 
+RUN conda install -c anaconda pillow && \
+    conda install -c anaconda beautifulsoup4
 
 # Get data
 WORKDIR data/
