@@ -43,13 +43,15 @@ RUN conda install -c anaconda pillow && \
     conda install -c anaconda beautifulsoup4
 
 
- # Build Darknet   
-WORKDIR darknet/ 
-RUN  git clone https://github.com/loretoparisi/darknet 
+# build repo
+RUN \
+	git clone https://github.com/loretoparisi/darknet
+
+WORKDIR darknet/
 COPY ./Makefile ./
 RUN \
-        sed -i 's/GPU=.*/GPU=1/' Makefile && \
-        make
+	sed -i 's/GPU=.*/GPU=1/' Makefile && \
+	make
 
 CMD nvidia-smi -q
 # defaults command
