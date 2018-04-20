@@ -49,8 +49,8 @@ WORKDIR data/
 RUN \
         git clone https://github.com/loretoparisi/darknet && \
         wget http://vision.stanford.edu/aditya86/ImageNetDogs/images.tar && \
-        tar -xvf images.tar && \
         wget http://vision.stanford.edu/aditya86/ImageNetDogs/annotation.tar && \
+        tar -xvf images.tar && \
         tar -xvf annotation.tar
 
 # Process data
