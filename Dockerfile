@@ -47,7 +47,8 @@ RUN conda install -c anaconda pillow && \
 RUN \
 	git clone https://github.com/loretoparisi/darknet
 
-WORKDIR darknet/
+RUN cd /darknet/darknet
+
 COPY ./Makefile ./
 RUN \
 	sed -i 's/GPU=.*/GPU=1/' Makefile && \
