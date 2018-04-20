@@ -47,12 +47,12 @@ RUN conda install -c anaconda pillow && \
 RUN \
 	git clone https://github.com/loretoparisi/darknet
 
-RUN cd /darknet/darknet
+# RUN cd /darknet/darknet
 
-COPY ./Makefile ./
-RUN \
-	sed -i 's/GPU=.*/GPU=1/' Makefile && \
-	make
+# COPY ./Makefile ./
+# RUN \
+# 	sed -i 's/GPU=.*/GPU=1/' Makefile && \
+# 	make
 
 CMD nvidia-smi -q
 # defaults command
