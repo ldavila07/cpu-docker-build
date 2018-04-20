@@ -11,4 +11,4 @@ CMD=sudo ./train.sh
 else
 CMD=bash
 fi
-docker  run --runtime=nvidia -it $IMAGE $CMD
+docker  run --runtime=nvidia -it -v /data:/data $IMAGE $CMD
