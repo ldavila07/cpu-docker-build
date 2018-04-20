@@ -5,9 +5,6 @@ ENV CUDNN_VERSION 7.1.2.21
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 ENV PATH /opt/conda/bin:$PATH
 
-# working directory
-WORKDIR /darknet
-
 RUN mkdir -p /data && \
         mkdir -p /gen
 
@@ -43,8 +40,11 @@ RUN apt-get install -y curl grep sed dpkg && \
     rm tini.deb && \
     apt-get clean
 
-#get data
+RUN conda install -c anaconda pillow beautifulsoup4 
+
+# Get data
 WORKDIR data/
+
 RUN \
         git clone https://github.com/loretoparisi/darknet && \
         wget http://vision.stanford.edu/aditya86/ImageNetDogs/images.tar && \
@@ -52,15 +52,19 @@ RUN \
         wget http://vision.stanford.edu/aditya86/ImageNetDogs/annotation.tar && \
         tar -xvf annotation.tar
 
-     
+# Process data
+WORKDIR gen/
+RUN  git clone https://github.com/ldavila07/gpu-test && \
+    python gen-images.py  /data/Images/ /data/Annotation/
 
+ # Build Darknet    
 WORKDIR darknet/
+RUN  git clone https://github.com/loretoparisi/darknet 
 COPY ./Makefile ./
 RUN \
         sed -i 's/GPU=.*/GPU=1/' Makefile && \
         make
 
 CMD nvidia-smi -q
-
 # defaults command
 CMD ["bash"]
