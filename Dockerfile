@@ -5,7 +5,7 @@ ENV CUDNN_VERSION 7.1.2.21
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 ENV PATH /opt/conda/bin:$PATH
 
-WORKDIR darknet/
+WORKDIR /darknet
 
 # install
 RUN \
@@ -43,7 +43,8 @@ RUN conda install -c anaconda pillow && \
     conda install -c anaconda beautifulsoup4
 
 
- # Build Darknet    
+ # Build Darknet   
+WORKDIR darknet/ 
 RUN  git clone https://github.com/loretoparisi/darknet 
 COPY ./Makefile ./
 RUN \
