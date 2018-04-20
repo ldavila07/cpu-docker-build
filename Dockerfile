@@ -40,7 +40,8 @@ RUN apt-get install -y curl grep sed dpkg && \
     apt-get clean
 
 RUN conda install -c anaconda pillow && \
-    conda install -c anaconda beautifulsoup4
+    conda install -c anaconda beautifulsoup4 && \
+    conda install -c anaconda pandas 
 
 
 # build repo
