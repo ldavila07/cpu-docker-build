@@ -18,7 +18,6 @@ RUN \
         build-essential \
         ca-certificates \
         git && \
-        vim && \
         rm -rf /var/lib/apt/lists/*
 
 
