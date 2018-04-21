@@ -18,6 +18,7 @@ RUN \
         build-essential \
         ca-certificates \
         git && \
+        vim && \
         rm -rf /var/lib/apt/lists/*
 
 
@@ -42,6 +43,7 @@ RUN apt-get install -y curl grep sed dpkg && \
 RUN conda install -c anaconda pillow && \
     conda install -c anaconda beautifulsoup4 && \
     conda install -c anaconda pandas && \
+    conda install -c conda-forge opencv && \
     pip install lxml
 
 # build repo
